@@ -1,12 +1,15 @@
+import { info } from "console";
 import {
   ArrowRight,
   Cat,
+  Info,
   Joystick,
   LayoutDashboardIcon,
   LucideIcon,
   Mountain,
   Pickaxe,
   Skull,
+  Store,
   Sword,
 } from "lucide-react";
 
@@ -21,4 +24,6 @@ export const Icons = {
   mountain: Mountain,
   mob: Cat,
   npc: Skull,
+  info: Info,
+  store: Store,
 };

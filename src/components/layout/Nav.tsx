@@ -66,7 +66,7 @@ export function Nav({
                       ""
                     )}
                   </Link> */}
-                  {item.sub && (
+                  {item.sub ? (
                     <Collapsible>
                       <CollapsibleTrigger
                         className={cn(
@@ -119,6 +119,25 @@ export function Nav({
                         </ul>
                       </CollapsibleContent>
                     </Collapsible>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "flex items-center gap-2 overflow-hidden rounded-md py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                        path === item.href ? "bg-accent" : "transparent"
+                      )}
+                      onClick={() => {
+                        if (setOpen) setOpen(false);
+                      }}
+                    >
+                      <Icon className={`ml-3 size-5 flex-none`} />
+
+                      {isMobileNav || (!isMinimized && !isMobileNav) ? (
+                        <span className="mr-2 truncate">{item.title}</span>
+                      ) : (
+                        ""
+                      )}
+                    </Link>
                   )}
                 </TooltipTrigger>
                 <TooltipContent

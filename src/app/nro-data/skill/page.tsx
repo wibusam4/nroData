@@ -2,9 +2,9 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import MainLayout from "@/components/layout/MainLayout";
 import { API } from "@/constants";
 import { Separator } from "@/components/ui/separator";
-import SelectType from "./select";
-import { ItemTable } from "@/components/tables/item/ItemTable";
-import { columns } from "@/components/tables/item/Columns";
+import SelectType from "../select";
+import { columns } from "@/components/tables/skill/Columns";
+import { SkillTable } from "@/components/tables/skill/SkillTable";
 
 type paramsProps = {
   searchParams: {
@@ -19,14 +19,31 @@ const breadcrumbItems = [
 ];
 
 async function fecthData(server: string | string[] | undefined) {
-  if (server === undefined) server = "1";
-  const res = await fetch(`${API}${server}/ItemTemplates.json`);
-  const results: any = await res.json();
-  return results;
+  try {
+    if (server === undefined) server = "Server1";
+    const res = await fetch(`${API}${server}/NClasses.json`, {
+      cache: "no-store",
+    });
+    const results: any = await res.json();
+    return results;
+  } catch (error) {
+    return null;
+  }
 }
 
 export default async function Home({ searchParams }: paramsProps) {
   const maps = await fecthData(searchParams?.server);
+  if (maps == null) {
+    return (
+      <MainLayout>
+        <div className="space-y-4">
+          <Breadcrumbs items={breadcrumbItems} />
+          <Separator />
+          <p className="p-4 text-[16px]">Lỗi Lấy Dữ Liệu</p>
+        </div>
+      </MainLayout>
+    );
+  }
   return (
     <MainLayout>
       <div className="space-y-4">
@@ -35,7 +52,7 @@ export default async function Home({ searchParams }: paramsProps) {
         <SelectType />
         <Separator />
         <div>
-          <ItemTable data={maps} columns={columns} searchKey="name" />
+          <SkillTable data={maps} columns={columns} searchKey="name" />
         </div>
       </div>
     </MainLayout>

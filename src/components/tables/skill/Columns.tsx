@@ -5,35 +5,31 @@ import { ColumnDef } from "@tanstack/react-table";
 export const columns: ColumnDef<Map>[] = [
   {
     accessorKey: "id",
-    header: "ID Item",
-  },
-  {
-    accessorKey: "iconID",
-    header: "iconID",
+    header: "ID Skill",
   },
   {
     accessorKey: "name",
-    header: "Tên Vật Phẩm",
+    header: "Skill",
   },
   {
-    accessorKey: "gender",
-    header: "Hành Tinh",
+    accessorKey: "iconId",
+    header: "IconID",
+  },
+  {
+    accessorKey: "maxPoint",
+    header: "maxPoint",
+  },
+  {
+    accessorKey: "manaUseType",
+    header: "manaUseType",
   },
   {
     accessorKey: "type",
-    header: "Type",
+    header: "type",
   },
   {
-    accessorKey: "strRequire",
-    header: "Sức Mạnh Yêu Cầu",
-  },
-  {
-    accessorKey: "level",
-    header: "Level",
-  },
-  {
-    accessorKey: "part",
-    header: "Part",
+    accessorKey: "damInfo",
+    header: "damInfo",
   },
   {
     accessorKey: "description",

@@ -4,8 +4,7 @@ import { columns } from "@/components/tables/map/Columns";
 import { MapTable } from "@/components/tables/map/MapTable";
 import { API } from "@/constants";
 import { Separator } from "@/components/ui/separator";
-import SelectType from "./select";
-import { Map } from "@/type";
+import SelectType from "../select";
 
 type paramsProps = {
   searchParams: {
@@ -20,14 +19,31 @@ const breadcrumbItems = [
 ];
 
 async function fecthData(server: string | string[] | undefined) {
-  if (server === undefined) server = "1";
-  const res = await fetch(`${API}${server}/Maps.json`);
-  const results: any = await res.json();
-  return results;
+  try {
+    if (server === undefined) server = "Server1";
+    const res = await fetch(`${API}${server}/Maps.json`, {
+      cache: "no-store",
+    });
+    const results: any = await res.json();
+    return results;
+  } catch (error) {
+    return null;
+  }
 }
 
 export default async function Home({ searchParams }: paramsProps) {
   const maps = await fecthData(searchParams?.server);
+  if (maps == null) {
+    return (
+      <MainLayout>
+        <div className="space-y-4">
+          <Breadcrumbs items={breadcrumbItems} />
+          <Separator />
+          <p className="p-4 text-[16px]">Lỗi Lấy Dữ Liệu</p>
+        </div>
+      </MainLayout>
+    );
+  }
   return (
     <MainLayout>
       <div className="space-y-4">

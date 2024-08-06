@@ -2,9 +2,9 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import MainLayout from "@/components/layout/MainLayout";
 import { API } from "@/constants";
 import { Separator } from "@/components/ui/separator";
-import SelectType from "./select";
 import { NpcTable } from "@/components/tables/npc/NpcTable";
 import { columns } from "@/components/tables/npc/Columns";
+import SelectType from "../select";
 
 type paramsProps = {
   searchParams: {
@@ -19,14 +19,31 @@ const breadcrumbItems = [
 ];
 
 async function fecthData(server: string | string[] | undefined) {
-  if (server === undefined) server = "1";
-  const res = await fetch(`${API}${server}/NpcTemplates.json`);
-  const results: any = await res.json();
-  return results;
+  try {
+    if (server === undefined) server = "Server1";
+    const res = await fetch(`${API}${server}/NpcTemplates.json`, {
+      cache: "no-store",
+    });
+    const results: any = await res.json();
+    return results;
+  } catch (error) {
+    return null;
+  }
 }
 
 export default async function Home({ searchParams }: paramsProps) {
   const npcs = await fecthData(searchParams?.server);
+  if (npcs == null) {
+    return (
+      <MainLayout>
+        <div className="space-y-4">
+          <Breadcrumbs items={breadcrumbItems} />
+          <Separator />
+          <p className="p-4 text-[16px]">Lỗi Lấy Dữ Liệu</p>
+        </div>
+      </MainLayout>
+    );
+  }
   return (
     <MainLayout>
       <div className="space-y-4">

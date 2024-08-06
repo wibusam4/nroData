@@ -77,6 +77,18 @@ export const navItems: NavItem[] = [
       },
     ],
   },
+  {
+    title: "Thông Tin",
+    href: "/infor",
+    icon: "info",
+    label: "Công CỤ",
+  },
+  {
+    title: "Shopwibu.Net",
+    href: "https://shopwibu.net",
+    icon: "store",
+    label: "Công CỤ",
+  },
 ];
 
-export const API = "https://electroheavenvn.github.io/DataNRO/Server";
+export const API = "https://electroheavenvn.github.io/DataNRO/";

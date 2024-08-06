@@ -1,9 +1,7 @@
 "use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import { Icons } from "@/components/icons";
 import { Dispatch, SetStateAction } from "react";
 import {
   Tooltip,
@@ -18,7 +16,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../ui/collapsible";
-import { ChevronDown, ChevronDownIcon } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Button, buttonVariants } from "../ui/button";
 import {
   DropdownMenu,
@@ -28,7 +26,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-
+import useCheckActiveNav from "@/hooks/useCheckActive";
 interface DashboardNavProps {
   items: NavItem[];
   setOpen?: Dispatch<SetStateAction<boolean>>;
@@ -40,9 +38,7 @@ export function Nav2({
   setOpen,
   isMobileNav = false,
 }: DashboardNavProps) {
-  const path = usePathname();
   const { isMinimized } = useSidebar();
-
   if (!items?.length) {
     return null;
   }
@@ -56,7 +52,7 @@ export function Nav2({
 
     if (sub) return <NavLinkDropdown {...rest} sub={sub} key={key} />;
 
-    return <NavLink {...rest} key={key} />;
+    return <NavLinkMain {...rest} key={key} />;
   };
 
   return (
@@ -68,16 +64,40 @@ export function Nav2({
 
 function NavLink({ title, icon, label, href }: SubItem) {
   const Icon = Icons[icon || "arrowRight"];
+  const { checkActiveNav } = useCheckActiveNav();
   return (
     <Link
       href={href}
       className={cn(
-        buttonVariants({ variant: "ghost", size: "sm" }),
+        buttonVariants({
+          variant: checkActiveNav(href) ? "secondary" : "ghost",
+          size: "sm",
+        }),
         "h-12 w-full justify-start text-wrap rounded-none px-2 border-l border-slate-900"
       )}
     >
       <Icon className={`size-5 flex-none`} />
       <div className="ml-2 rounded-lg px-1">{title}</div>
+    </Link>
+  );
+}
+
+function NavLinkMain({ title, icon, label, href }: SubItem) {
+  const Icon = Icons[icon || "arrowRight"];
+  const { checkActiveNav } = useCheckActiveNav();
+  return (
+    <Link
+      href={href}
+      className={cn(
+        buttonVariants({
+          variant: checkActiveNav(href) ? "secondary" : "ghost",
+          size: "sm",
+        }),
+        `h-12 w-full justify-start text-wrap rounded-none px-2`
+      )}
+    >
+      <Icon className={`size-5 flex-none`} />
+      <div className="ml-2 rounded-lg px-1 text-[16px]">{title}</div>
     </Link>
   );
 }
@@ -115,7 +135,8 @@ function NavLinkDropdown({ title, icon, label, sub }: NavItem) {
   );
 }
 
-function NavLinkIcon({ title, icon, label, href }: any) {
+function NavLinkIcon({ title, icon, label, href }: NavItem) {
+  const Icon = Icons[icon || "arrowRight"];
   return (
     <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
@@ -124,19 +145,17 @@ function NavLinkIcon({ title, icon, label, href }: any) {
           className={cn(
             buttonVariants({
               size: "icon",
+              variant: "ghost",
             }),
             "h-12 w-12"
           )}
         >
-          {icon}
+          <Icon />
           <span className="sr-only">{title}</span>
         </Link>
       </TooltipTrigger>
       <TooltipContent side="right" className="flex items-center gap-4">
         {title}
-        {label && (
-          <span className="ml-auto text-muted-foreground">{label}</span>
-        )}
       </TooltipContent>
     </Tooltip>
   );

@@ -51,13 +51,21 @@ export default function SelectType() {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="1">Server 1</SelectItem>
-              <SelectItem value="2">Server 2</SelectItem>
-              <SelectItem value="3">Server 3</SelectItem>
-              <SelectItem value="4">Server 4</SelectItem>
-              <SelectItem value="5">Server 5</SelectItem>
-              <SelectItem value="6">Server 6</SelectItem>
-              <SelectItem value="7">Server 7</SelectItem>
+              <SelectItem value="Server1">Server 1</SelectItem>
+              <SelectItem value="Server2">Server 2</SelectItem>
+              <SelectItem value="Server3">Server 3</SelectItem>
+              <SelectItem value="Server4">Server 4</SelectItem>
+              <SelectItem value="Server5">Server 5</SelectItem>
+              <SelectItem value="Server6">Server 6</SelectItem>
+              <SelectItem value="Server7">Server 7</SelectItem>
+              <SelectItem value="Server8910">Server 8910</SelectItem>
+              <SelectItem value="Server11">Server 11</SelectItem>
+              <SelectItem value="Server12">Server 12</SelectItem>
+              <SelectItem value="Server13">Server 13</SelectItem>
+              <SelectItem value="Super1">Super 1</SelectItem>
+              <SelectItem value="Super2">Super 2</SelectItem>
+              <SelectItem value="Universe1">Universe1</SelectItem>
+              <SelectItem value="Naga">Naga</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
