@@ -20,39 +20,77 @@ export interface Item {
 
 export const navItems: NavItem[] = [
   {
-    title: "Data NRO",
-    label: "Data NRO",
+    title: "Data NRO TeaMobi",
+    label: "Data NRO TeaMobi",
     href: "/",
     icon: "data",
     sub: [
       {
         title: "Item",
         label: "",
-        href: "/nro-data/item",
+        href: "/tea-data/item",
         icon: "pickaxe",
       },
       {
         title: "Map",
         label: "",
-        href: "/nro-data/map",
+        href: "/tea-data/map",
         icon: "mountain",
       },
       {
         title: "Skill",
         label: "",
-        href: "/nro-data/skill",
+        href: "/tea-data/skill",
         icon: "swords",
       },
       {
         title: "NPC",
         label: "",
-        href: "/nro-data/npc",
+        href: "/tea-data/npc",
         icon: "npc",
       },
       {
         title: "Mob / Quái",
         label: "",
-        href: "/nro-data/mob",
+        href: "/tea-data/mob",
+        icon: "mob",
+      },
+    ],
+  },
+  {
+    title: "Data NRO HSNR",
+    label: "Data NRO HSNR",
+    href: "/",
+    icon: "data",
+    sub: [
+      {
+        title: "Item",
+        label: "",
+        href: "/",
+        icon: "pickaxe",
+      },
+      {
+        title: "Map",
+        label: "",
+        href: "/",
+        icon: "mountain",
+      },
+      {
+        title: "Skill",
+        label: "",
+        href: "/",
+        icon: "swords",
+      },
+      {
+        title: "NPC",
+        label: "",
+        href: "/",
+        icon: "npc",
+      },
+      {
+        title: "Mob / Quái",
+        label: "",
+        href: "/",
         icon: "mob",
       },
     ],
@@ -91,4 +129,4 @@ export const navItems: NavItem[] = [
   },
 ];
 
-export const API = "https://electroheavenvn.github.io/DataNRO/";
+export const API = "https://electroheavenvn.github.io/DataNRO/TeaMobi/";

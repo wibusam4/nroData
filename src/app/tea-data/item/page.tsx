@@ -14,8 +14,8 @@ type paramsProps = {
 
 const breadcrumbItems = [
   { title: "Trang Chủ", link: "/" },
-  { title: "Data NRO", link: "/nro-data" },
-  { title: "Item", link: "/nro-data/item" },
+  { title: "Data NRO", link: "/tea-data" },
+  { title: "Item", link: "/tea-data/item" },
 ];
 
 async function fecthData(server: string | string[] | undefined) {

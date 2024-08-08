@@ -3,8 +3,8 @@ import MainLayout from "@/components/layout/MainLayout";
 import { API } from "@/constants";
 import { Separator } from "@/components/ui/separator";
 import SelectType from "../select";
-import { columns } from "@/components/tables/skill/Columns";
-import { SkillTable } from "@/components/tables/skill/SkillTable";
+import { Mobtable } from "@/components/tables/mob/MobTable";
+import { columns } from "@/components/tables/mob/Columns";
 
 type paramsProps = {
   searchParams: {
@@ -14,14 +14,14 @@ type paramsProps = {
 
 const breadcrumbItems = [
   { title: "Trang Chủ", link: "/" },
-  { title: "Data NRO", link: "/nro-data" },
-  { title: "Item", link: "/nro-data/skill" },
+  { title: "Data NRO", link: "/tea-data" },
+  { title: "Mob / Quái", link: "/tea-data/mob" },
 ];
 
 async function fecthData(server: string | string[] | undefined) {
   try {
     if (server === undefined) server = "Server1";
-    const res = await fetch(`${API}${server}/NClasses.json`, {
+    const res = await fetch(`${API}${server}/MobTemplates.json`, {
       cache: "no-store",
     });
     const results: any = await res.json();
@@ -32,8 +32,8 @@ async function fecthData(server: string | string[] | undefined) {
 }
 
 export default async function Home({ searchParams }: paramsProps) {
-  const maps = await fecthData(searchParams?.server);
-  if (maps == null) {
+  const mobs = await fecthData(searchParams?.server);
+  if (mobs == null) {
     return (
       <MainLayout>
         <div className="space-y-4">
@@ -52,7 +52,7 @@ export default async function Home({ searchParams }: paramsProps) {
         <SelectType />
         <Separator />
         <div>
-          <SkillTable data={maps} columns={columns} searchKey="name" />
+          <Mobtable data={mobs} columns={columns} searchKey="name" />
         </div>
       </div>
     </MainLayout>
