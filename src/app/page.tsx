@@ -2,7 +2,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import MainLayout from "@/components/layout/MainLayout";
 import { columns } from "@/components/tables/map/Columns";
 import { MapTable } from "@/components/tables/map/MapTable";
-import { API } from "@/constants";
+import { API_TEA } from "@/constants";
 import { Separator } from "@/components/ui/separator";
 import SelectType from "./select";
 
@@ -20,7 +20,7 @@ const breadcrumbItems = [
 async function fecthMap(type: string | string[] | undefined) {
   let t = "Maps";
   if (type === "item") t = "ItemTemplates";
-  const res = await fetch(`${API}1/${t}.json`);
+  const res = await fetch(`${API_TEA}1/${t}.json`);
   const results = await res.json();
 
   const maps = Object.entries(results).map(([id, name]) => ({ id, name }));

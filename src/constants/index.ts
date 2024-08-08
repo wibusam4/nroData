@@ -66,31 +66,31 @@ export const navItems: NavItem[] = [
       {
         title: "Item",
         label: "",
-        href: "/",
+        href: "/hsnr-data/item",
         icon: "pickaxe",
       },
       {
         title: "Map",
         label: "",
-        href: "/",
+        href: "/hsnr-data/map",
         icon: "mountain",
       },
       {
         title: "Skill",
         label: "",
-        href: "/",
+        href: "/hsnr-data/skill",
         icon: "swords",
       },
       {
         title: "NPC",
         label: "",
-        href: "/",
+        href: "/hsnr-data/npc",
         icon: "npc",
       },
       {
         title: "Mob / Quái",
         label: "",
-        href: "/",
+        href: "/hsnr-data/mob",
         icon: "mob",
       },
     ],
@@ -129,4 +129,5 @@ export const navItems: NavItem[] = [
   },
 ];
 
-export const API = "https://electroheavenvn.github.io/DataNRO/TeaMobi/";
+export const API_TEA = "https://electroheavenvn.github.io/DataNRO/TeaMobi/";
+export const API_HSNR = "https://electroheavenvn.github.io/DataNRO/HSNR/";
