@@ -6,7 +6,10 @@ const nextConfig = {
     },
     eslint: {
         ignoreDuringBuilds: true,
-    }
+    },
+    images: {
+        domains: ['electroheavenvn.github.io']
+    },
 };
 
 export default nextConfig;
